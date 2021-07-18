@@ -18,4 +18,16 @@ class MyHomePageState with _$MyHomePageState {
 
 class MyHomePageViewModel extends StateNotifier<MyHomePageState> {
   MyHomePageViewModel() : super(MyHomePageState(items: []));
+  static const _addCount = 20;
+
+  Future<void> fetchList() async {
+    Future.delayed(const Duration(seconds: 2), () {
+      final items = <Item>[];
+      for (var i = 0; i < _addCount; i++) {
+        final id = state.items.length + i;
+        items.add(Item(name: 'Item no. $id'));
+      }
+      state = state.copyWith(items: [...state.items, ...items]);
+    });
+  }
 }

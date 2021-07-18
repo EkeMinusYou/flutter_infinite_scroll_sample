@@ -23,7 +23,7 @@ class MyHomePage extends HookConsumerWidget {
               child: ListTile(
                 leading: Icon(Icons.book),
                 title: Text(
-                  'item$index',
+                  'Item no. $index',
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
               ));
