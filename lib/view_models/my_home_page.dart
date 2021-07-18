@@ -17,7 +17,10 @@ class MyHomePageState with _$MyHomePageState {
 }
 
 class MyHomePageViewModel extends StateNotifier<MyHomePageState> {
-  MyHomePageViewModel() : super(MyHomePageState(items: []));
+  MyHomePageViewModel() : super(MyHomePageState(items: [])) {
+    fetchList();
+  }
+
   static const _addCount = 20;
 
   Future<void> fetchList() async {

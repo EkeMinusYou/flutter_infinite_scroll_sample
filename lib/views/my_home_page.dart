@@ -16,14 +16,14 @@ class MyHomePage extends HookConsumerWidget {
         title: Text(title),
       ),
       body: ListView.builder(
-        itemCount: 30,
+        itemCount: myHomePageState.items.length,
         itemBuilder: (context, index) {
           return Container(
               decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1.0, color: Colors.grey))),
               child: ListTile(
                 leading: Icon(Icons.book),
                 title: Text(
-                  'Item no. $index',
+                  myHomePageState.items[index].name,
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
               ));
