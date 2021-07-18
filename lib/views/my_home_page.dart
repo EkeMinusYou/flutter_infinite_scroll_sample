@@ -15,24 +15,19 @@ class MyHomePage extends HookConsumerWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              myHomePageState.counter.data.toString(),
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: ref.read(myHomePageViewModelProvider.notifier).increment,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      body: ListView.builder(
+        itemCount: 30,
+        itemBuilder: (context, index) {
+          return Container(
+              decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1.0, color: Colors.grey))),
+              child: ListTile(
+                leading: Icon(Icons.book),
+                title: Text(
+                  'item$index',
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
+              ));
+        },
       ),
     );
   }
