@@ -16,9 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$MyHomePageStateTearOff {
   const _$MyHomePageStateTearOff();
 
-  _MyHomePageState call({required List<Item> items}) {
+  _MyHomePageState call(
+      {required List<Item> items, required String? nextToken}) {
     return _MyHomePageState(
       items: items,
+      nextToken: nextToken,
     );
   }
 }
@@ -29,6 +31,7 @@ const $MyHomePageState = _$MyHomePageStateTearOff();
 /// @nodoc
 mixin _$MyHomePageState {
   List<Item> get items => throw _privateConstructorUsedError;
+  String? get nextToken => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MyHomePageStateCopyWith<MyHomePageState> get copyWith =>
@@ -40,7 +43,7 @@ abstract class $MyHomePageStateCopyWith<$Res> {
   factory $MyHomePageStateCopyWith(
           MyHomePageState value, $Res Function(MyHomePageState) then) =
       _$MyHomePageStateCopyWithImpl<$Res>;
-  $Res call({List<Item> items});
+  $Res call({List<Item> items, String? nextToken});
 }
 
 /// @nodoc
@@ -55,12 +58,17 @@ class _$MyHomePageStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? items = freezed,
+    Object? nextToken = freezed,
   }) {
     return _then(_value.copyWith(
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<Item>,
+      nextToken: nextToken == freezed
+          ? _value.nextToken
+          : nextToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -72,7 +80,7 @@ abstract class _$MyHomePageStateCopyWith<$Res>
           _MyHomePageState value, $Res Function(_MyHomePageState) then) =
       __$MyHomePageStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<Item> items});
+  $Res call({List<Item> items, String? nextToken});
 }
 
 /// @nodoc
@@ -89,12 +97,17 @@ class __$MyHomePageStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? items = freezed,
+    Object? nextToken = freezed,
   }) {
     return _then(_MyHomePageState(
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
               as List<Item>,
+      nextToken: nextToken == freezed
+          ? _value.nextToken
+          : nextToken // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -102,14 +115,16 @@ class __$MyHomePageStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_MyHomePageState implements _MyHomePageState {
-  _$_MyHomePageState({required this.items});
+  _$_MyHomePageState({required this.items, required this.nextToken});
 
   @override
   final List<Item> items;
+  @override
+  final String? nextToken;
 
   @override
   String toString() {
-    return 'MyHomePageState(items: $items)';
+    return 'MyHomePageState(items: $items, nextToken: $nextToken)';
   }
 
   @override
@@ -117,12 +132,17 @@ class _$_MyHomePageState implements _MyHomePageState {
     return identical(this, other) ||
         (other is _MyHomePageState &&
             (identical(other.items, items) ||
-                const DeepCollectionEquality().equals(other.items, items)));
+                const DeepCollectionEquality().equals(other.items, items)) &&
+            (identical(other.nextToken, nextToken) ||
+                const DeepCollectionEquality()
+                    .equals(other.nextToken, nextToken)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(items);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(items) ^
+      const DeepCollectionEquality().hash(nextToken);
 
   @JsonKey(ignore: true)
   @override
@@ -131,10 +151,14 @@ class _$_MyHomePageState implements _MyHomePageState {
 }
 
 abstract class _MyHomePageState implements MyHomePageState {
-  factory _MyHomePageState({required List<Item> items}) = _$_MyHomePageState;
+  factory _MyHomePageState(
+      {required List<Item> items,
+      required String? nextToken}) = _$_MyHomePageState;
 
   @override
   List<Item> get items => throw _privateConstructorUsedError;
+  @override
+  String? get nextToken => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MyHomePageStateCopyWith<_MyHomePageState> get copyWith =>

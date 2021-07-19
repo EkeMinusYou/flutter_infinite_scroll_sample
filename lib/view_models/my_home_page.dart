@@ -13,24 +13,44 @@ final myHomePageViewModelProvider = StateNotifierProvider<MyHomePageViewModel, M
 class MyHomePageState with _$MyHomePageState {
   factory MyHomePageState({
     required List<Item> items,
+    required String? nextToken,
   }) = _MyHomePageState;
 }
 
 class MyHomePageViewModel extends StateNotifier<MyHomePageState> {
-  MyHomePageViewModel() : super(MyHomePageState(items: [])) {
-    fetchList();
+  MyHomePageViewModel() : super(MyHomePageState(items: [], nextToken: null)) {
+    fetchInitialList();
   }
 
   static const _addCount = 20;
 
-  Future<void> fetchList() async {
-    Future.delayed(const Duration(seconds: 2), () {
+  Future<void> fetchInitialList() async {
+    Future.delayed(const Duration(seconds: 1), () {
       final items = <Item>[];
       for (var i = 0; i < _addCount; i++) {
-        final id = state.items.length + i;
+        items.add(Item(name: 'Item no. $i'));
+      }
+      state = state.copyWith(items: items, nextToken: items.length.toString());
+    });
+  }
+
+  Future<void> fetchNextList() async {
+    if (state.nextToken == null) return;
+
+    final next = int.parse(state.nextToken!);
+
+    if (next >= 100) {
+      state = state.copyWith(nextToken: null);
+      return;
+    }
+
+    Future.delayed(const Duration(seconds: 1), () {
+      final items = <Item>[];
+      for (var i = 0; i < _addCount; i++) {
+        final id = i + next;
         items.add(Item(name: 'Item no. $id'));
       }
-      state = state.copyWith(items: [...state.items, ...items]);
+      state = state.copyWith(items: [...state.items, ...items], nextToken: state.items.length.toString());
     });
   }
 }
