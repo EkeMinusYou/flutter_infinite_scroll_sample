@@ -20,12 +20,18 @@ class MyHomePage extends StatelessWidget {
 }
 
 class _ListView extends HookConsumerWidget {
+  final _nextFetchThreshold = 2.0;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final cacheExtent = MediaQuery.of(context).orientation == Orientation.portrait
+        ? MediaQuery.of(context).size.height * _nextFetchThreshold
+        : MediaQuery.of(context).size.width * _nextFetchThreshold;
+
     final myHomePageState = ref.watch(myHomePageViewModelProvider);
 
     return ListView.builder(
-      cacheExtent: 250 * 4,
+      cacheExtent: cacheExtent,
       itemCount: myHomePageState.items.length,
       itemBuilder: (context, index) {
         if (index == myHomePageState.items.length - 1) {
