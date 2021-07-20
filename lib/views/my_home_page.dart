@@ -34,9 +34,7 @@ class _ListView extends HookConsumerWidget {
       cacheExtent: cacheExtent,
       itemCount: myHomePageState.items.length,
       itemBuilder: (context, index) {
-        if (index == myHomePageState.items.length - 1) {
-          ref.read(myHomePageViewModelProvider.notifier).fetchNextList();
-        }
+        ref.read(myHomePageViewModelProvider.notifier).handleScrollWithIndex(index);
         return Container(
             decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1.0, color: Colors.grey))),
             child: ListTile(

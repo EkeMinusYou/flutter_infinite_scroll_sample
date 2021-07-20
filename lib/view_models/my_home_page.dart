@@ -19,12 +19,12 @@ class MyHomePageState with _$MyHomePageState {
 
 class MyHomePageViewModel extends StateNotifier<MyHomePageState> {
   MyHomePageViewModel() : super(MyHomePageState(items: [], nextToken: null)) {
-    fetchInitialList();
+    initialize();
   }
 
   static const _addCount = 20;
 
-  Future<void> fetchInitialList() async {
+  Future<void> initialize() async {
     Future.delayed(const Duration(seconds: 1), () {
       final items = <Item>[];
       for (var i = 0; i < _addCount; i++) {
@@ -34,11 +34,13 @@ class MyHomePageViewModel extends StateNotifier<MyHomePageState> {
     });
   }
 
-  Future<void> fetchNextList() async {
-    if (state.nextToken == null) return;
+  Future<void> handleScrollWithIndex(int index) async {
+    if (index + 1 != state.items.length) return;
 
+    if (state.nextToken == null) return;
     final next = int.parse(state.nextToken!);
 
+    // pagination end
     if (next >= 100) {
       state = state.copyWith(nextToken: null);
       return;
