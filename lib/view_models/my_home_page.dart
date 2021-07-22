@@ -38,21 +38,18 @@ class MyHomePageViewModel extends StateNotifier<MyHomePageState> {
   Future<void> handleFetchNextWithIndex(int index) async {
     if (index + 1 != state.items.length) return;
 
-    if (state.nextToken == null) return;
-    final next = int.parse(state.nextToken!);
-
     // pagination end
-    if (next >= 100) {
-      state = state.copyWith(nextToken: null);
+    if (state.items.length >= 100) {
       return;
     }
 
     Future.delayed(const Duration(seconds: 1), () {
       final items = <Item>[];
       for (var i = 0; i < _addCount; i++) {
-        final id = i + next;
+        final id = i + state.items.length;
         items.add(Item(name: 'Item no. $id'));
       }
+      print('called handleFetchNextIndex${index.toString()}');
       state = state.copyWith(items: [...state.items, ...items], nextToken: state.items.length.toString());
     });
   }
