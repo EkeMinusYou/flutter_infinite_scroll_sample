@@ -34,7 +34,7 @@ class MyHomePageViewModel extends StateNotifier<MyHomePageState> {
     });
   }
 
-  Future<void> handleScrollWithIndex(int index) async {
+  Future<void> handleFetchNextWithIndex(int index) async {
     if (index + 1 != state.items.length) return;
 
     if (state.nextToken == null) return;

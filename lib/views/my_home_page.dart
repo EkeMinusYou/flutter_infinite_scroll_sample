@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/utils/calculate_cache_extent.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:flutter_template/view_models/my_home_page.dart';
@@ -24,17 +25,14 @@ class _ListView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final cacheExtent = MediaQuery.of(context).orientation == Orientation.portrait
-        ? MediaQuery.of(context).size.height * _nextFetchThreshold
-        : MediaQuery.of(context).size.width * _nextFetchThreshold;
-
+    final cacheExtent = calculateCacheExtent(context, _nextFetchThreshold);
     final myHomePageState = ref.watch(myHomePageViewModelProvider);
 
     return ListView.builder(
       cacheExtent: cacheExtent,
       itemCount: myHomePageState.items.length,
       itemBuilder: (context, index) {
-        ref.read(myHomePageViewModelProvider.notifier).handleScrollWithIndex(index);
+        ref.read(myHomePageViewModelProvider.notifier).handleFetchNextWithIndex(index);
         return Container(
             decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1.0, color: Colors.grey))),
             child: ListTile(
