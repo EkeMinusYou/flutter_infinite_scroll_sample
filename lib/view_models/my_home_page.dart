@@ -14,11 +14,12 @@ class MyHomePageState with _$MyHomePageState {
   factory MyHomePageState({
     required List<Item> items,
     required String? nextToken,
+    required bool initializing,
   }) = _MyHomePageState;
 }
 
 class MyHomePageViewModel extends StateNotifier<MyHomePageState> {
-  MyHomePageViewModel() : super(MyHomePageState(items: [], nextToken: null)) {
+  MyHomePageViewModel() : super(MyHomePageState(items: [], nextToken: null, initializing: true)) {
     initialize();
   }
 
@@ -30,7 +31,7 @@ class MyHomePageViewModel extends StateNotifier<MyHomePageState> {
       for (var i = 0; i < _addCount; i++) {
         items.add(Item(name: 'Item no. $i'));
       }
-      state = state.copyWith(items: items, nextToken: items.length.toString());
+      state = state.copyWith(items: items, nextToken: items.length.toString(), initializing: false);
     });
   }
 

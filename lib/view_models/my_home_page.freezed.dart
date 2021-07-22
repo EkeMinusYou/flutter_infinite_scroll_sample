@@ -17,10 +17,13 @@ class _$MyHomePageStateTearOff {
   const _$MyHomePageStateTearOff();
 
   _MyHomePageState call(
-      {required List<Item> items, required String? nextToken}) {
+      {required List<Item> items,
+      required String? nextToken,
+      required bool initializing}) {
     return _MyHomePageState(
       items: items,
       nextToken: nextToken,
+      initializing: initializing,
     );
   }
 }
@@ -32,6 +35,7 @@ const $MyHomePageState = _$MyHomePageStateTearOff();
 mixin _$MyHomePageState {
   List<Item> get items => throw _privateConstructorUsedError;
   String? get nextToken => throw _privateConstructorUsedError;
+  bool get initializing => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MyHomePageStateCopyWith<MyHomePageState> get copyWith =>
@@ -43,7 +47,7 @@ abstract class $MyHomePageStateCopyWith<$Res> {
   factory $MyHomePageStateCopyWith(
           MyHomePageState value, $Res Function(MyHomePageState) then) =
       _$MyHomePageStateCopyWithImpl<$Res>;
-  $Res call({List<Item> items, String? nextToken});
+  $Res call({List<Item> items, String? nextToken, bool initializing});
 }
 
 /// @nodoc
@@ -59,6 +63,7 @@ class _$MyHomePageStateCopyWithImpl<$Res>
   $Res call({
     Object? items = freezed,
     Object? nextToken = freezed,
+    Object? initializing = freezed,
   }) {
     return _then(_value.copyWith(
       items: items == freezed
@@ -69,6 +74,10 @@ class _$MyHomePageStateCopyWithImpl<$Res>
           ? _value.nextToken
           : nextToken // ignore: cast_nullable_to_non_nullable
               as String?,
+      initializing: initializing == freezed
+          ? _value.initializing
+          : initializing // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -80,7 +89,7 @@ abstract class _$MyHomePageStateCopyWith<$Res>
           _MyHomePageState value, $Res Function(_MyHomePageState) then) =
       __$MyHomePageStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<Item> items, String? nextToken});
+  $Res call({List<Item> items, String? nextToken, bool initializing});
 }
 
 /// @nodoc
@@ -98,6 +107,7 @@ class __$MyHomePageStateCopyWithImpl<$Res>
   $Res call({
     Object? items = freezed,
     Object? nextToken = freezed,
+    Object? initializing = freezed,
   }) {
     return _then(_MyHomePageState(
       items: items == freezed
@@ -108,6 +118,10 @@ class __$MyHomePageStateCopyWithImpl<$Res>
           ? _value.nextToken
           : nextToken // ignore: cast_nullable_to_non_nullable
               as String?,
+      initializing: initializing == freezed
+          ? _value.initializing
+          : initializing // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -115,16 +129,21 @@ class __$MyHomePageStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_MyHomePageState implements _MyHomePageState {
-  _$_MyHomePageState({required this.items, required this.nextToken});
+  _$_MyHomePageState(
+      {required this.items,
+      required this.nextToken,
+      required this.initializing});
 
   @override
   final List<Item> items;
   @override
   final String? nextToken;
+  @override
+  final bool initializing;
 
   @override
   String toString() {
-    return 'MyHomePageState(items: $items, nextToken: $nextToken)';
+    return 'MyHomePageState(items: $items, nextToken: $nextToken, initializing: $initializing)';
   }
 
   @override
@@ -135,14 +154,18 @@ class _$_MyHomePageState implements _MyHomePageState {
                 const DeepCollectionEquality().equals(other.items, items)) &&
             (identical(other.nextToken, nextToken) ||
                 const DeepCollectionEquality()
-                    .equals(other.nextToken, nextToken)));
+                    .equals(other.nextToken, nextToken)) &&
+            (identical(other.initializing, initializing) ||
+                const DeepCollectionEquality()
+                    .equals(other.initializing, initializing)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(items) ^
-      const DeepCollectionEquality().hash(nextToken);
+      const DeepCollectionEquality().hash(nextToken) ^
+      const DeepCollectionEquality().hash(initializing);
 
   @JsonKey(ignore: true)
   @override
@@ -153,12 +176,15 @@ class _$_MyHomePageState implements _MyHomePageState {
 abstract class _MyHomePageState implements MyHomePageState {
   factory _MyHomePageState(
       {required List<Item> items,
-      required String? nextToken}) = _$_MyHomePageState;
+      required String? nextToken,
+      required bool initializing}) = _$_MyHomePageState;
 
   @override
   List<Item> get items => throw _privateConstructorUsedError;
   @override
   String? get nextToken => throw _privateConstructorUsedError;
+  @override
+  bool get initializing => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$MyHomePageStateCopyWith<_MyHomePageState> get copyWith =>

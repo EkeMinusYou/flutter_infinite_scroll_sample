@@ -28,21 +28,23 @@ class _ListView extends HookConsumerWidget {
     final cacheExtent = calculateCacheExtent(context, _nextFetchThreshold);
     final myHomePageState = ref.watch(myHomePageViewModelProvider);
 
-    return ListView.builder(
-      cacheExtent: cacheExtent,
-      itemCount: myHomePageState.items.length,
-      itemBuilder: (context, index) {
-        ref.read(myHomePageViewModelProvider.notifier).handleFetchNextWithIndex(index);
-        return Container(
-            decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1.0, color: Colors.grey))),
-            child: ListTile(
-              leading: Icon(Icons.book),
-              title: Text(
-                myHomePageState.items[index].name,
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-            ));
-      },
-    );
+    return myHomePageState.initializing
+        ? Center(child: const CircularProgressIndicator())
+        : ListView.builder(
+            cacheExtent: cacheExtent,
+            itemCount: myHomePageState.items.length,
+            itemBuilder: (context, index) {
+              ref.read(myHomePageViewModelProvider.notifier).handleFetchNextWithIndex(index);
+              return Container(
+                  decoration: BoxDecoration(border: Border(bottom: BorderSide(width: 1.0, color: Colors.grey))),
+                  child: ListTile(
+                    leading: Icon(Icons.book),
+                    title: Text(
+                      myHomePageState.items[index].name,
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
+                  ));
+            },
+          );
   }
 }
